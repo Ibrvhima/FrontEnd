@@ -1,42 +1,53 @@
-let buttons = document.querySelector(".buttons");
-let btn = document.querySelectorAll("span");
-let value = document.getElementById("value");
-let toggleBtn = document.querySelector(".toggleBtn");
-let body = document.querySelector("body");
-let deleteBtn = document.querySelector("delete");
-
-function evaluateExpression(expression) {
-  try {
-    if (/^[\d+\-*/().\s]+$/.test(expression)) {
-      let result = new Function("return " + expression)();
-
-      return parseFloat(result.toFixed(2));
-    } else {
-      throw new Error("Expression invalide");
-    }
-  } catch (error) {
-    return "Erreur";
+const themes = [
+  {
+    background: "#1A1A2E",
+    color: "#FFFFFF",
+    primaryColor: "#0F3460"
+  },
+  {
+    background: "#461220",
+    color: "#FFFFFF",
+    primaryColor: "#E94560"
+  },
+  {
+    background: "#192A51",
+    color: "#FFFFFF",
+    primaryColor: "#967AA1"
+  },
+  {
+    background: "#F7B267",
+    color: "#000000",
+    primaryColor: "#F4845F"
+  },
+  {
+    background: "#F25F5C",
+    color: "#000000",
+    primaryColor: "#642B36"
+  },
+  {
+    background: "#231F20",
+    color: "#FFF",
+    primaryColor: "#BB4430"
   }
-}
+];
 
-for (let i = 0; i < btn.length; i++) {
-  btn[i].addEventListener("click", function () {
-    if (this.innerHTML == "=") {
-      value.innerHTML = evaluateExpression(value.innerHTML);
-    } else if (this.innerHTML == "Cls") {
-      value.innerHTML = "";
-    } else if (this.innerHTML == "Del") {
-      value.innerHTML = value.innerHTML.slice(0, -1);
-    } else {
-      value.innerHTML += this.innerHTML;
-    }
-  });
-}
-
-deleteBtn.addEventListener("click", function () {
-  value.innerHTML = value.innerHTML.slice(0, -1);
-});
-
-toggleBtn.onclick = function () {
-  body.classList.toggle("dark");
+const setTheme = (theme) => {
+  const root = document.querySelector(":root");
+  root.style.setProperty("--background", theme.background);
+  root.style.setProperty("--color", theme.color);
+  root.style.setProperty("--primary-color", theme.primaryColor);
+  root.style.setProperty("--glass-color", theme.glassColor);
 };
+
+const displayThemeButtons = () => {
+  const btnContainer = document.querySelector(".theme-btn-container");
+  themes.forEach((theme) => {
+    const div = document.createElement("div");
+    div.className = "theme-btn";
+    div.style.cssText = `background: ${theme.background}; width: 25px; height: 25px`;
+    btnContainer.appendChild(div);
+    div.addEventListener("click", () => setTheme(theme));
+  });
+};
+
+displayThemeButtons();
