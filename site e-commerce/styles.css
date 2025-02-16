@@ -104,22 +104,6 @@ header .icons a:hover{
   display: none;
 }
 
-#cart-count {
-  background: red;
-  color: white;
-  font-size: 12px;
-  border-radius: 50%;
-  width: 18px;
-  height: 18px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  top: 30px;
-  right: 150px;
-}
-
-
 .home{
   padding:0;
   position:relative;

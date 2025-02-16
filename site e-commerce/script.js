@@ -1,74 +1,48 @@
-document.addEventListener("DOMContentLoaded", () => {
-  // Sélection des éléments
-  let menu = document.querySelector("#menu-bar");
-  let navbar = document.querySelector(".navbar");
-  let cartCountElement = document.getElementById("cart-count");
-  let slides = document.querySelectorAll(".slide-container");
-  let cartCount = parseInt(localStorage.getItem("cartCount")) || 0;
-  
-  // Mise à jour du panier à l'ouverture de la page
-  if (cartCountElement) {
-    cartCountElement.textContent = cartCount;
-  }
+let menu = document.querySelector('#menu-bar');
+let navbar = document.querySelector('.navbar');
 
-  // Gestion du menu
-  if (menu && navbar) {
-    window.onscroll = () => {
-      menu.classList.remove("fa-times");
-      navbar.classList.remove("active");
-    };
-  }
+menu.onclick = () =>{
+  menu.classList.toggle('fa-times');
+  navbar.classList.toggle('active');
+}
 
-  // Ajout au panier
-  document.querySelectorAll(".add-to-cart").forEach((button) => {
-    button.addEventListener("click", () => {
-      cartCount++;
-      if (cartCountElement) cartCountElement.textContent = cartCount;
-      localStorage.setItem("cartCount", cartCount);
-    });
+window.onscroll = () =>{
+  menu.classList.remove('fa-times');
+  navbar.classList.remove('active');
+}
+
+let slides = document.querySelectorAll('.slide-container');
+let index = 0;
+
+function next(){
+  slides[index].classList.remove('active');
+  index = (index + 1) % slides.length;
+  slides[index].classList.add('active');
+}
+
+function prev(){
+  slides[index].classList.remove('active');
+  index = (index - 1 + slides.length) % slides.length;
+  slides[index].classList.add('active');
+}
+
+document.querySelectorAll('.featured-image-1').forEach(image_1 =>{
+  image_1.addEventListener('click', () =>{
+    var src = image_1.getAttribute('src');
+    document.querySelector('.big-image-1').src = src;
   });
+});
 
-  // Slider (carousel)
-  let index = 0;
-  let slideInterval = setInterval(nextSlide, 3000);
-
-  function nextSlide() {
-    slides[index].classList.remove("active");
-    index = (index + 1) % slides.length;
-    slides[index].classList.add("active");
-  }
-
-  function prevSlide() {
-    slides[index].classList.remove("active");
-    index = (index - 1 + slides.length) % slides.length;
-    slides[index].classList.add("active");
-  }
-
-  // Pause du slider au survol
-  slides.forEach((slide) => {
-    slide.addEventListener("mouseenter", () => clearInterval(slideInterval));
-    slide.addEventListener("mouseleave", () => {
-      clearInterval(slideInterval);
-      slideInterval = setInterval(nextSlide, 3000);
-    });
+document.querySelectorAll('.featured-image-2').forEach(image_2 =>{
+  image_2.addEventListener('click', () =>{
+    var src = image_2.getAttribute('src');
+    document.querySelector('.big-image-2').src = src;
   });
+});
 
-  // Changement d'image principale lors du clic sur une miniature
-  function setupImageChange(featuredClass, bigImageClass) {
-    let featuredImages = document.querySelectorAll(`.${featuredClass}`);
-    let bigImage = document.querySelector(`.${bigImageClass}`);
-
-    if (featuredImages.length > 0 && bigImage) {
-      featuredImages.forEach((image) => {
-        image.addEventListener("click", () => {
-          bigImage.src = image.getAttribute("src");
-        });
-      });
-    }
-  }
-
-  // Appliquer la fonction aux différentes catégories d'images
-  setupImageChange("featured-image-1", "big-image-1");
-  setupImageChange("featured-image-2", "big-image-2");
-  setupImageChange("featured-image-3", "big-image-3");
+document.querySelectorAll('.featured-image-3').forEach(image_3 =>{
+  image_3.addEventListener('click', () =>{
+    var src = image_3.getAttribute('src');
+    document.querySelector('.big-image-3').src = src;
+  });
 });
