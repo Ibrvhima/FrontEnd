@@ -22,15 +22,19 @@ nav {
 
 .search {
   display: flex;
+  gap: 1rem;
   align-items: center;
   background-color: gray;
-  padding: 10px 20px;
+  padding: 5px 20px;
   border-radius: 10px;
 }
 
 .searchInput {
   border: none;
+  outline: none;
   background-color: transparent;
+  padding: 5px 0;
+  color: #FFF;
 }
 
 .searchInput::placeholder {
@@ -103,10 +107,11 @@ nav {
   top: 10%;
   left: 10%;
   font-size: 60px;
+  padding: 10px;
   font-weight: 300;
   text-align: center;
   color: white;
-  border: 1px solid gray;
+  border: 4px solid gray;
   z-index: 1;
 }
 
@@ -230,6 +235,7 @@ label {
   margin: 10px 0px;
   border: none;
   border-bottom: 1px solid gray;
+  
 }
 
 .payInput::placeholder {
@@ -238,11 +244,10 @@ label {
 
 .cardIcons {
   display: flex;
+  gap: 10px;
 }
 
-.cardIcon {
-  margin-right: 10px;
-}
+
 
 .cardInfo {
   display: flex;
@@ -352,7 +357,7 @@ label {
 
 .galleryItem {
   flex: 1;
-  padding: 50px;
+  padding: 30px;
 }
 
 .galleryImg {
@@ -424,13 +429,16 @@ footer {
 }
 
 .fInput {
-  padding: 5px;
+  padding: 10px;
+  background-color: aliceblue;
+  border: none;
 }
 
 .fButton {
-  padding: 5px;
+  padding: 10px;
   background-color: black;
   color: white;
+  border: none;
 }
 
 .fIcons{
